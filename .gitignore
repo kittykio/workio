@@ -4,5 +4,6 @@ __pycache__/
 .coverage
 db.sqlite3
 media/
+staticfiles/
 .env
 .DS_Store
