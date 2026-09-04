@@ -28,8 +28,6 @@ FRAME_ANCESTORS = [
     for ancestor in os.environ.get(
         "FRAME_ANCESTORS",
         "'self' https://kittykio.com https://www.kittykio.com "
-        "https://portfolio-project.vercel.app "
-        "https://portfolio-project-7kh4gkdpu-kittykio.vercel.app "
         "http://localhost:* http://127.0.0.1:*",
     ).split()
     if ancestor.strip()
