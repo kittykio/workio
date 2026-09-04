@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Workio — Client work, in one place{% endblock %}
+{% block content %}
+<section class="hero container">
+  <div class="hero-copy">
+    <div class="eyebrow">THE CLIENT PORTAL FOR INDEPENDENTS</div>
+    <h1>Great work starts with <em>clarity.</em></h1>
+    <p>Projects, conversations, and client relationships—organized in one calm workspace built for freelancers.</p>
+    <div class="actions"><a class="button" href="{% url 'signup' %}">Start your workspace <span>→</span></a><a class="text-link" href="#features">See how it works ↓</a></div>
+    <div class="trust"><span>✓ Free to start</span><span>✓ No card required</span><span>✓ Set up in minutes</span></div>
+  </div>
+  <div class="hero-card">
+    <div class="window-bar"><i></i><i></i><i></i><span>Project overview</span></div>
+    <div class="mock-content"><div class="mock-head"><div><small>ACTIVE PROJECT</small><h3>Brand website refresh</h3></div><b>68%</b></div><div class="progress"><span style="width:68%"></span></div>
+    <div class="mock-grid"><div><small>CLIENT</small><strong>Paper & Pine</strong></div><div><small>DUE DATE</small><strong>Sep 18</strong></div></div>
+    <div class="mock-task">✓ Discovery & strategy <small>Complete</small></div><div class="mock-task"><span>◌</span> Visual design <small>In progress</small></div><div class="mock-task muted"><span>◌</span> Development <small>Upcoming</small></div></div>
+  </div>
+</section>
+<section id="features" class="section container"><div class="section-intro"><span class="eyebrow">ONE WORKSPACE</span><h2>Everything your client work needs.</h2></div><div class="feature-grid">
+  <article><span class="feature-icon coral">⌁</span><h3>Projects that stay on track</h3><p>Turn every engagement into clear milestones, tasks, and shared progress.</p></article>
+  <article><span class="feature-icon gold">✉</span><h3>Conversations in context</h3><p>Keep decisions close to the work with focused, private messaging.</p></article>
+  <article><span class="feature-icon blue">◎</span><h3>A profile that works for you</h3><p>Showcase your expertise and give clients one polished place to connect.</p></article>
+</div></section>
+{% endblock %}
+

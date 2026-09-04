@@ -1,0 +1,45 @@
+.inbox-row {
+  gap: 18px;
+}
+
+.inbox-copy {
+  min-width: 0;
+}
+
+.inbox-copy strong {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.inbox-copy p {
+  line-height: 1.45;
+}
+
+.chat-head {
+  gap: 18px;
+  padding: 20px 2px;
+}
+
+.chat-back {
+  padding: 8px;
+  font-size: 20px;
+}
+
+.chat-avatar {
+  width: 46px;
+  height: 46px;
+}
+
+.chat-person {
+  margin-left: 2px;
+}
+
+.chat-person strong {
+  margin-bottom: 4px;
+}
+
+.dashboard-timeline .activity-avatar {
+  width: 36px;
+  height: 36px;
+  font-size: 11px;
+}

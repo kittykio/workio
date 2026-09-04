@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% block title %}Welcome back — Workio{% endblock %}
+{% block content %}<div class="auth-shell"><div class="auth-card"><div class="eyebrow">WELCOME BACK</div><h1>Log in to your workspace</h1><p>Good work is waiting.</p><form method="post" class="form">{% csrf_token %}{{ form.as_p }}<div class="form-help"><a href="{% url 'password_reset' %}">Forgot your password?</a></div><button class="button full">Log in</button></form><p class="auth-foot">New to Workio? <a href="{% url 'signup' %}">Create an account</a></p></div></div>{% endblock %}

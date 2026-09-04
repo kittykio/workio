@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Chat with {{ other.display_name }}{% endblock %}
+{% block content %}
+<div class="container chat-page">
+  <header class="chat-head"><a class="chat-back" href="{% url 'inbox' %}" aria-label="Back to messages">←</a><span class="avatar chat-avatar">{% if other.avatar %}<img src="{{ other.avatar.url }}" alt="{{ other.display_name }}">{% else %}{{ other.initials }}{% endif %}</span><div class="chat-person"><strong>{{ other.display_name }}</strong><small>{{ other.headline|default:other.get_role_display }}</small></div><span class="live-status"><i></i> Live</span></header>
+  <div class="chat-stream" id="chat-stream">{% for message in conversation.messages.all %}<div class="bubble-wrap {% if message.sender == user %}mine{% endif %}" data-message-id="{{ message.pk }}"><div class="bubble">{% if message.body %}{{ message.body|linebreaksbr }}{% endif %}{% if message.attachment %}<a class="file-chip" href="{% url 'message_attachment' conversation.pk message.pk %}">⇩ {{ message.attachment.name|truncatechars:36 }}</a>{% endif %}</div><small>{{ message.created_at|date:'M j, g:i A' }}</small></div>{% empty %}<div class="chat-empty" id="chat-empty"><span>✦</span><h2>Start something great.</h2><p>Send a message to {{ other.first_name|default:other.username }}.</p></div>{% endfor %}</div>
+  <form method="post" enctype="multipart/form-data" class="composer">{% csrf_token %}<div>{{ form.body }}{{ form.attachment }}{% if form.errors %}<small>{{ form.errors }}</small>{% endif %}</div><button class="button">Send →</button></form>
+</div>
+<script>
+const stream=document.querySelector('#chat-stream');let lastId=Math.max(0,...[...stream.querySelectorAll('[data-message-id]')].map(x=>Number(x.dataset.messageId)));let atBottom=true;
+stream.addEventListener('scroll',()=>{atBottom=stream.scrollHeight-stream.scrollTop-stream.clientHeight<80});stream.scrollTop=stream.scrollHeight;
+function addMessage(m){document.querySelector('#chat-empty')?.remove();const wrap=document.createElement('div');wrap.className='bubble-wrap'+(m.mine?' mine':'');wrap.dataset.messageId=m.id;const bubble=document.createElement('div');bubble.className='bubble';if(m.body){const text=document.createElement('span');text.textContent=m.body;bubble.append(text)}if(m.attachment){const file=document.createElement('a');file.className='file-chip';file.href=m.attachment;file.textContent='⇩ '+m.attachment_name;bubble.append(file)}const time=document.createElement('small');time.textContent=m.created;wrap.append(bubble,time);stream.append(wrap);lastId=Math.max(lastId,m.id)}
+async function pollMessages(){try{const response=await fetch('{% url "message_feed" conversation.pk %}?after='+lastId);if(!response.ok)return;const data=await response.json();data.messages.forEach(addMessage);if(data.messages.length&&atBottom)stream.scrollTop=stream.scrollHeight}catch(e){}}
+setInterval(pollMessages,3000);
+</script>
+{% endblock %}

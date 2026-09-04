@@ -1,0 +1,106 @@
+:root {
+  /* Brand colors */
+  --primary: #ffb22c;
+  --secondary: #885134;
+  --secondary-alt: #337789;
+
+  /* Text colors */
+  --ink: #000000;
+  --muted: #645b58;
+
+  /* Surface colors */
+  --background: #f7f7f7;
+  --surface: #ffffff;
+  --line: #ded8d5;
+  --tint: #ead8d2;
+}
+
+.button,
+.window-bar,
+.stat.accent,
+.metric.accent,
+.expense-summary,
+.review-summary,
+.mine .bubble {
+  background: var(--primary);
+  color: #000000;
+}
+
+.stat.accent span,
+.stat.accent a,
+.metric.accent > span,
+.metric.accent > a,
+.expense-summary span,
+.review-summary p,
+.review-summary small {
+  color: #000000;
+}
+
+.profile-cover {
+  background-color: var(--primary);
+  background-image: radial-gradient(#854836 1px, transparent 1px);
+}
+
+.case-placeholder {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+.task button,
+.milestone button,
+.activity-icon,
+.success-card > span,
+.pill.billed {
+  color: var(--secondary);
+}
+
+.milestone-submitted .milestone-state,
+.milestone-changes .milestone-state,
+.timer-launch > span {
+  color: #000000;
+}
+
+/* Cool secondary accents for informational and active states. */
+.button.secondary {
+  color: var(--secondary-alt);
+  border-color: var(--secondary-alt);
+}
+
+.status.active,
+.live-status i {
+  background: var(--secondary-alt);
+}
+
+.blue,
+.file-icon,
+.activity-icon.kind-file {
+  background: #d6e4e8;
+  color: var(--secondary-alt);
+}
+
+.alt {
+  background: var(--secondary-alt);
+  color: #ffffff;
+}
+
+.avatar,
+.message-nav > span,
+.unread-pill,
+.notification-link span {
+  color: #000000;
+}
+
+.button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--primary);
+  color: #000000;
+}

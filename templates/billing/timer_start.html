@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% block title %}Start timer — Workio{% endblock %}{% block content %}<div class="container narrow page"><div class="timer-launch"><span>▶</span><div><div class="eyebrow">LIVE TIME TRACKING</div><h1>Start a timer</h1><p>{{ project.title }}</p></div></div><form method="post" class="form panel form-page">{% csrf_token %}{{ form.as_p }}<button class="button">Start tracking</button><a class="button secondary" href="{{ project.get_absolute_url }}">Cancel</a></form></div>{% endblock %}
+

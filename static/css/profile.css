@@ -1,0 +1,195 @@
+.profile-top {
+  align-items: flex-start;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 72px;
+}
+
+.profile-section-heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.profile-section-heading .subhead {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.section-edit-link {
+  color: #854836;
+  font-weight: 700;
+  margin-bottom: 1px;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.avatar-editor {
+  margin: 18px 0 26px;
+}
+
+.avatar-editor > label,
+.avatar-upload > span {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.avatar-current {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.avatar-preview {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  flex: none;
+}
+
+.avatar-preview.is-empty {
+  background: transparent;
+  border-style: dashed;
+}
+
+.avatar-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-current strong {
+  display: block;
+  margin-bottom: 7px;
+}
+
+.avatar-remove {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.avatar-remove input {
+  width: 17px;
+  height: 17px;
+  margin: 0;
+  accent-color: var(--primary);
+}
+
+.avatar-upload input[type="file"] {
+  padding: 10px;
+}
+
+.avatar-editor > small {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+}
+
+.form p:has(input[type="checkbox"]) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.form p:has(input[type="checkbox"]) label {
+  margin: 0;
+}
+
+.form p input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--primary);
+  flex: none;
+}
+
+.skill-editor {
+  margin: 18px 0 26px;
+}
+
+.skill-editor > label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.skill-edit-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  padding: 6px 8px 6px 12px;
+}
+
+.skill-edit-tag button {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: #e8e3e1;
+  color: var(--ink);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.skill-entry-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+}
+
+.skill-entry-row input {
+  width: 100%;
+  border: 1px solid #cfc7c4;
+  border-radius: 4px;
+  background: white;
+  color: var(--ink);
+  padding: 12px;
+}
+
+.skill-editor > small {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+}
+
+@media (max-width: 520px) {
+  .profile-top {
+    gap: 16px;
+  }
+
+  .profile-actions {
+    margin-top: 68px;
+  }
+}

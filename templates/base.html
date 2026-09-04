@@ -1,0 +1,65 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Workio{% endblock %}</title>
+  <meta name="description" content="Workio brings freelancers, clients, projects, messages, time, and billing together in one workspace.">
+  <meta name="theme-color" content="#ffb22c">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Workio">
+  <meta property="og:title" content="Workio — Freelance work, beautifully connected">
+  <meta property="og:description" content="A connected workspace for freelancers and clients.">
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-workio.png' %}">
+  <meta property="og:image:width" content="1600">
+  <meta property="og:image:height" content="1600">
+  <meta property="og:image:alt" content="Workio logo">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Workio — Freelance work, beautifully connected">
+  <meta name="twitter:description" content="A connected workspace for freelancers and clients.">
+  <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/logo-workio.png' %}">
+  <link rel="icon" href="{% static 'images/logo-workio.svg' %}" type="image/svg+xml">
+  <link rel="icon" href="{% static 'images/logo-workio.png' %}" type="image/png">
+  <link rel="apple-touch-icon" href="{% static 'images/logo-workio.png' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/app.css' %}">
+  <link rel="stylesheet" href="{% static 'css/features.css' %}">
+  <link rel="stylesheet" href="{% static 'css/management.css' %}">
+  <link rel="stylesheet" href="{% static 'css/live.css' %}">
+  <link rel="stylesheet" href="{% static 'css/discovery.css' %}">
+  <link rel="stylesheet" href="{% static 'css/invitations.css' %}">
+  <link rel="stylesheet" href="{% static 'css/approvals.css' %}">
+  <link rel="stylesheet" href="{% static 'css/time-invoice.css' %}">
+  <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+  <link rel="stylesheet" href="{% static 'css/activity.css' %}">
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+  <link rel="stylesheet" href="{% static 'css/timer.css' %}">
+  <link rel="stylesheet" href="{% static 'css/expenses.css' %}">
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+  <link rel="stylesheet" href="{% static 'css/messages.css' %}">
+  <link rel="stylesheet" href="{% static 'css/header.css' %}">
+  <link rel="stylesheet" href="{% static 'css/palette.css' %}">
+</head>
+<body>
+  <nav class="nav container">
+    <a class="brand" href="{% url 'home' %}"><img src="{% static 'images/logo-workio.svg' %}" alt=""><span>Workio</span></a>
+    <div class="nav-links">
+      {% if user.is_authenticated %}
+        <a href="{% url 'dashboard' %}">Overview</a><a href="{% url 'freelancer_directory' %}">Discover</a><a href="{% url 'project_list' %}">Work</a>{% if user.role == 'freelancer' %}<a href="{% url 'service_catalog' user.username %}">Services</a><a href="{% url 'workflow_board' %}">Workflow</a>{% endif %}<a href="{% url 'schedule_overview' %}">Schedule</a><a href="{% url 'work_report' %}">Reports</a>{% if user.role == 'freelancer' %}<a href="{% url 'automation_list' %}">Automations</a>{% endif %}<a href="{% url 'time_list' %}">Time</a><a href="{% url 'expense_list' %}">Expenses</a><a href="{% url 'invoice_list' %}">Invoices</a><a class="message-nav" href="{% url 'inbox' %}">Messages{% if unread_message_count %}<span>{{ unread_message_count }}</span>{% endif %}</a><a class="notification-link" href="{% url 'notification_list' %}" aria-label="Notifications"><svg class="notification-bell" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"></path><path d="M10 21h4"></path></svg><span id="notification-count" {% if not unread_notification_count %}hidden{% endif %}>{{ unread_notification_count }}</span></a>
+        <a class="avatar avatar-sm" href="{{ user.get_absolute_url }}">{% if user.avatar %}<img src="{{ user.avatar.url }}" alt="{{ user.display_name }}">{% else %}{{ user.initials }}{% endif %}</a><a class="settings-link" href="{% url 'account_settings' %}" aria-label="Account settings"><svg class="settings-gear" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"></path><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-2.83 2.83-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.03 1.56V21h-4v-.08A1.7 1.7 0 0 0 8.97 19.4a1.7 1.7 0 0 0-1.88.34l-.06.06-2.83-2.83.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.52-1.03H3v-4h.08A1.7 1.7 0 0 0 4.6 8.94a1.7 1.7 0 0 0-.34-1.88L4.2 7l2.83-2.83.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 10 3.05V3h4v.08a1.7 1.7 0 0 0 1.03 1.52 1.7 1.7 0 0 0 1.88-.34l.06-.06L19.8 7l-.06.06a1.7 1.7 0 0 0-.34 1.88 1.7 1.7 0 0 0 1.52 1.03H21v4h-.08A1.7 1.7 0 0 0 19.4 15Z"></path></svg></a>
+        <form action="{% url 'logout' %}" method="post">{% csrf_token %}<button class="link-button">Log out</button></form>
+      {% else %}
+        <a href="{% url 'login' %}">Log in</a><a class="button button-small" href="{% url 'signup' %}">Get started</a>
+      {% endif %}
+    </div>
+  </nav>
+  {% if active_timer %}<div class="timer-bar"><div class="container"><span class="timer-pulse"></span><div><strong>{{ active_timer.description }}</strong><small>{{ active_timer.project.title }}</small></div><time id="running-timer" data-started="{{ active_timer.started_at|date:'c' }}">00:00:00</time><form method="post" action="{% url 'timer_stop' %}">{% csrf_token %}<button>■ Stop & save</button></form></div></div>{% endif %}
+  {% if messages %}<div class="container">{% for message in messages %}<div class="notice">{{ message }}</div>{% endfor %}</div>{% endif %}
+  <main>{% block content %}{% endblock %}</main>
+  <footer class="container footer"><div class="footer-brand"><strong><img src="{% static 'images/logo-workio.svg' %}" alt=""> Workio</strong><span>Work beautifully, together.</span></div><div class="footer-info"><span>A workspace for freelancers and clients.</span><small>© {% now "Y" %} Workio. All rights reserved.</small></div></footer>
+  {% if user.is_authenticated %}<script>const badge=document.querySelector('#notification-count');async function refreshNotifications(){try{const r=await fetch('{% url "notification_feed" %}');if(!r.ok)return;const d=await r.json();badge.textContent=d.unread;badge.hidden=!d.unread}catch(e){}}setInterval(refreshNotifications,15000);const timer=document.querySelector('#running-timer');if(timer){const started=new Date(timer.dataset.started);function tick(){const seconds=Math.max(0,Math.floor((Date.now()-started)/1000));const h=String(Math.floor(seconds/3600)).padStart(2,'0'),m=String(Math.floor(seconds%3600/60)).padStart(2,'0'),s=String(seconds%60).padStart(2,'0');timer.textContent=`${h}:${m}:${s}`}tick();setInterval(tick,1000)}</script>{% endif %}
+</body>
+</html>

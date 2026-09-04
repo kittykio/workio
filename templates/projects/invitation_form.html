@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% block title %}Invite a client — Workio{% endblock %}{% block content %}<div class="container narrow page"><div class="eyebrow">NEW COLLABORATION</div><h1>Invite your client</h1><p>Describe the engagement. They’ll receive a secure link to join the workspace and accept.</p><form method="post" class="form panel form-page">{% csrf_token %}{{ form.as_p }}<button class="button">Send invitation</button></form></div>{% endblock %}
+

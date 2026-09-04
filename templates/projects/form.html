@@ -1,0 +1,3 @@
+{% extends 'base.html' %}
+{% block title %}{% if editing %}Edit work{% else %}New work{% endif %} — Workio{% endblock %}
+{% block content %}<div class="container narrow page"><div class="eyebrow">{% if editing %}WORK SETTINGS{% else %}NEW ENGAGEMENT{% endif %}</div><h1>{% if editing %}Edit work{% else %}Create new work{% endif %}</h1><p>Set up a project, booking, session, appointment, or ongoing engagement.</p>{% if not editing %}<a class="text-link" href="{% url 'template_list' %}">Start from a reusable template →</a>{% endif %}<form method="post" class="form panel form-page">{% csrf_token %}{{ form.as_p }}<button class="button">{% if editing %}Save changes{% else %}Create work{% endif %}</button></form></div>{% endblock %}

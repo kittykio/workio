@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ invoice.number }} — Workio{% endblock %}
+{% block content %}
+<div class="container invoice-page"><div class="invoice-paper">
+  <header class="invoice-head"><div><div class="brand"><span>✦</span> Workio</div><p>Invoice to<br><strong>{{ invoice.project.client.display_name }}</strong><br>{{ invoice.project.client.company }}</p></div><div><span class="pill invoice-{{ invoice.status }}">{{ invoice.get_status_display }}</span><h1>INVOICE</h1><strong>{{ invoice.number }}</strong></div></header>
+  <div class="invoice-dates"><span>ISSUED <strong>{{ invoice.issued_on|date:'M j, Y' }}</strong></span><span>DUE <strong>{{ invoice.due_on|date:'M j, Y' }}</strong></span><span>PROJECT <strong>{{ invoice.project.title }}</strong></span></div>
+  <table><thead><tr><th>Description</th><th>Quantity</th><th>Rate</th><th>Amount</th></tr></thead><tbody>{% for item in invoice.items.all %}<tr><td>{{ item.description }}</td><td>{{ item.quantity }}</td><td>${{ item.rate }}</td><td>${{ item.amount|floatformat:2 }}</td></tr>{% endfor %}</tbody></table>
+  <div class="invoice-total"><span>TOTAL DUE</span><strong>${{ invoice.total|floatformat:2 }}</strong></div>
+  {% if invoice.notes %}<div class="invoice-notes"><small>NOTES</small><p>{{ invoice.notes }}</p></div>{% endif %}
+  <div class="invoice-actions">
+    {% if user == invoice.project.freelancer and invoice.status == 'draft' %}<a class="button secondary" href="{% url 'invoice_edit' invoice.pk %}">Edit draft</a><form method="post" action="{% url 'invoice_delete' invoice.pk %}" onsubmit="return confirm('Delete this draft invoice?')">{% csrf_token %}<button class="button danger">Delete</button></form><form method="post" action="{% url 'invoice_status' invoice.pk %}">{% csrf_token %}<input type="hidden" name="status" value="sent"><button class="button">Send to client</button></form>{% elif user == invoice.project.client and invoice.status == 'sent' %}<form method="post" action="{% url 'invoice_status' invoice.pk %}">{% csrf_token %}<input type="hidden" name="status" value="paid"><button class="button">Mark as paid</button></form>{% endif %}
+    <button class="button secondary" onclick="window.print()">Print invoice</button>
+  </div>
+</div></div>
+{% endblock %}
