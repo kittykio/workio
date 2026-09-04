@@ -23,6 +23,13 @@ CSRF_TRUSTED_ORIGINS = [
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
+FRAME_ANCESTORS = [
+    ancestor.strip()
+    for ancestor in os.environ.get(
+        "FRAME_ANCESTORS", "'self' https://kittykio.com https://www.kittykio.com"
+    ).split()
+    if ancestor.strip()
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -44,7 +51,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
-    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "freelance_hub.middleware.FrameAncestorsMiddleware",
 ]
 ROOT_URLCONF = "freelance_hub.urls"
 TEMPLATES = [{
